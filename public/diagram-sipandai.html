@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagram Sistem SIPANDAI - ERD & Flowchart</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: { useMaxWidth: false, htmlLabels: true },
+            securityLevel: 'loose'
+        });
+
+        // Fungsi download SVG sebagai file gambar PNG beresolusi tinggi
+        function downloadDiagram(containerId, filename) {
+            const container = document.getElementById(containerId);
+            const svgElement = container.querySelector('svg');
+            if (!svgElement) {
+                alert('Diagram sedang dimuat, silakan tunggu sebentar...');
+                return;
+            }
+
+            const svgData = new XMLSerializer().serializeToString(svgElement);
+            const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+            const URL = window.URL || window.webkitURL || window;
+            const blobURL = URL.createObjectURL(svgBlob);
+
+            const image = new Image();
+            image.onload = function() {
+                const canvas = document.createElement('canvas');
+                // Scale up 2x untuk resolusi jernih HD
+                const scale = 2;
+                canvas.width = svgElement.getBoundingClientRect().width * scale;
+                canvas.height = svgElement.getBoundingClientRect().height * scale;
+                const context = canvas.getContext('2d');
+                context.fillStyle = '#ffffff';
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                const pngURL = canvas.toDataURL('image/png');
+                const downloadLink = document.createElement('a');
+                downloadLink.href = pngURL;
+                downloadLink.download = filename + '.png';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+            };
+            image.src = blobURL;
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #f8fafc; }
+        .mermaid svg { max-width: 100% !important; height: auto !important; margin: 0 auto; }
+    </style>
+</head>
+<body class="p-6 md:p-10 max-w-7xl mx-auto text-slate-800 space-y-10">
+
+    <!-- Header Halaman -->
+    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold mb-2">
+                <i class="fa-solid fa-diagram-project mr-1.5"></i> DOKUMENTASI SISTEM RESMI
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Dokumentasi ERD & Flowchart SIPANDAI</h1>
+            <p class="text-slate-500 text-sm mt-1">PT PLN (Persero) UIT JBB &bull; UPT Gandul</p>
+        </div>
+        <div class="text-xs text-slate-400 bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <i class="fa-solid fa-circle-info text-blue-500 mr-1"></i> Klik tombol <strong>"Download PNG"</strong> pada tiap diagram untuk menyimpan gambar HD.
+        </div>
+    </div>
+
+    <!-- 1. ERD -->
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-8 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-4">
+            <div>
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-database text-blue-600"></i>
+                    <span>1. Entity Relationship Diagram (ERD)</span>
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Struktur 4 entitas database: users, categories, complaints, complaint_histories</p>
+            </div>
+            <button onclick="downloadDiagram('erd-box', 'ERD-SIPANDAI-PLN')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-2 transition">
+                <i class="fa-solid fa-download"></i>
+                <span>Download PNG</span>
+            </button>
+        </div>
+        <div id="erd-box" class="mermaid overflow-x-auto py-4 bg-white flex justify-center">
+erDiagram
+    USERS ||--o{ COMPLAINTS : "mengajukan (1:N)"
+    CATEGORIES ||--o{ COMPLAINTS : "mengelompokkan (1:N)"
+    COMPLAINTS ||--|{ COMPLAINT_HISTORIES : "memiliki riwayat (1:N)"
+    USERS ||--o{ COMPLAINT_HISTORIES : "memperbarui status (1:N)"
+
+    USERS {
+        bigint id PK
+        string nip "Unique / NULL"
+        string name "Nama Lengkap"
+        string email "Unique"
+        string role "admin / pegawai"
+        string unit_bagian "Unit Kerja"
+        string phone "No WhatsApp/HP"
+        string password "Hashed"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    CATEGORIES {
+        bigint id PK
+        string name "Nama Kategori"
+        text description "Keterangan"
+        boolean is_active "Status Aktif"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    COMPLAINTS {
+        bigint id PK
+        string ticket_number "Unique (SIP-YYYY-XXXXXX)"
+        bigint user_id FK "ID Pegawai Pelapor"
+        bigint category_id FK "ID Kategori"
+        string custom_category "Jika pilih Lainnya"
+        string title "Judul Pengaduan"
+        string incident_location "Lokasi Kejadian"
+        date incident_date "Tanggal Kejadian"
+        longtext description "Deskripsi Detail Masalah"
+        string attachment "File Bukti / Foto"
+        enum status "baru, diverifikasi, diproses, selesai, ditolak"
+        text admin_notes "Catatan Tindak Lanjut Admin"
+        string resolution_proof "Bukti Penyelesaian"
+        timestamp resolved_at "Waktu Penyelesaian"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    COMPLAINT_HISTORIES {
+        bigint id PK
+        bigint complaint_id FK "ID Pengaduan"
+        bigint user_id FK "ID Aktor (Admin/Petugas)"
+        string status "Status pada saat log"
+        text notes "Catatan Progres"
+        timestamp created_at "Waktu Perubahan"
+    }
+        </div>
+    </div>
+
+    <!-- 2. Flowchart Pegawai -->
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-8 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-4">
+            <div>
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-user text-amber-500"></i>
+                    <span>2. Flowchart Pegawai ke Sistem</span>
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Alur pengajuan laporan, pelacakan tiket, riwayat, dan profil</p>
+            </div>
+            <button onclick="downloadDiagram('pegawai-box', 'Flowchart-Pegawai-SIPANDAI')" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-2 transition">
+                <i class="fa-solid fa-download"></i>
+                <span>Download PNG</span>
+            </button>
+        </div>
+        <div id="pegawai-box" class="mermaid overflow-x-auto py-4 bg-white flex justify-center">
+flowchart TD
+    StartPegawai(["Mulai"]) --> AksesLogin["Pegawai Membuka Halaman Login (/login)"]
+    AksesLogin --> InputKredensial["Input NIP / Email & Password"]
+    InputKredensial --> CekLogin{"Validasi Kredensial & Role?"}
+
+    CekLogin -- "Gagal" --> NotifError["Muncul Notifikasi Error"]
+    NotifError --> AksesLogin
+
+    CekLogin -- "Berhasil" --> DashPegawai["Dashboard Pegawai (/dashboard)"]
+
+    DashPegawai --> MenuPegawai{"Pilih Aktivitas Pegawai"}
+
+    MenuPegawai -- "Buat Pengaduan" --> FormAduan["Form Pengaduan (/pengaduan/buat)"]
+    FormAduan --> IsiDetail["Pilih Kategori, Judul, Tanggal, Lokasi, Deskripsi"]
+    IsiDetail --> UploadBukti["Unggah Berkas/Foto Bukti (Opsional)"]
+    UploadBukti --> SubmitAduan["Klik Kirim Laporan"]
+    
+    SubmitAduan --> SistemProsesTiket["Sistem Generate Tiket: SIP-YYYY-XXXXXX"]
+    SistemProsesTiket --> SimpanDatabase[("Simpan ke complaints & complaint_histories")]
+    SimpanDatabase --> BerhasilTerbit["Tiket Berhasil Terbit"]
+    BerhasilTerbit --> KeDaftarAduan["Menu Pengaduan Saya"]
+
+    MenuPegawai -- "Pengaduan Saya" --> KeDaftarAduan
+    KeDaftarAduan --> BukaDetailAduan["Klik Detail / Lacak"]
+    BukaDetailAduan --> TampilDetail["Lihat Progres, Catatan Admin, Bukti Selesai & Timeline"]
+
+    MenuPegawai -- "Lacak Tiket" --> HalamanLacak["Menu Lacak Tiket (/lacak-tiket)"]
+    HalamanLacak --> KetikNoTiket["Input Nomor Tiket"]
+    KetikNoTiket --> TampilTimeline["Tampilkan Status Terkini & Progres"]
+
+    MenuPegawai -- "Logout" --> LogoutPegawai["Keluar Sistem"]
+    LogoutPegawai --> SelesaiPegawai(["Selesai"])
+        </div>
+    </div>
+
+    <!-- 3. Flowchart Admin -->
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-8 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-4">
+            <div>
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-blue-600"></i>
+                    <span>3. Flowchart Administrator ke Sistem</span>
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Alur monitoring, verifikasi, penanganan tiket, master pegawai, master kategori, & rekap laporan</p>
+            </div>
+            <button onclick="downloadDiagram('admin-box', 'Flowchart-Admin-SIPANDAI')" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-2 transition">
+                <i class="fa-solid fa-download"></i>
+                <span>Download PNG</span>
+            </button>
+        </div>
+        <div id="admin-box" class="mermaid overflow-x-auto py-4 bg-white flex justify-center">
+flowchart TD
+    StartAdmin(["Mulai"]) --> LoginAdmin["Admin Login (/login)"]
+    LoginAdmin --> CekAuthAdmin{"Validasi Kredensial Admin?"}
+    CekAuthAdmin -- "Gagal" --> TolakAuth["Kredensial Salah"]
+    TolakAuth --> LoginAdmin
+
+    CekAuthAdmin -- "Berhasil" --> DashboardAdmin["Dashboard Admin (/admin/dashboard)"]
+    DashboardAdmin --> FiturAdmin{"Pilih Modul Admin"}
+
+    FiturAdmin -- "Monitoring" --> PantauStatistik["Pantau 6 Kartu Statistik, Grafik Donat, Tren Bulanan"]
+
+    FiturAdmin -- "Kelola Pengaduan" --> MenuKelola["Daftar Pengaduan (/admin/complaints)"]
+    MenuKelola --> BukaFormProses["Buka Detail Tiket (/admin/complaints/id)"]
+    BukaFormProses --> TinjauAduan["Tinjau Masalah & Berkas Pelapor"]
+    TinjauAduan --> KeputusanAdmin{"Pilih Tindakan Status:"}
+
+    KeputusanAdmin -- "Tolak" --> InputTolak["Update Status 'Ditolak' + Catatan Alasan"]
+    KeputusanAdmin -- "Verifikasi" --> InputVerif["Update Status 'Diverifikasi'"]
+    InputVerif --> InputDiproses["Update Status 'Sedang Diproses'"]
+    KeputusanAdmin -- "Diproses" --> InputDiproses
+    InputDiproses --> PenangananRampung["Petugas Menangani Kendala"]
+    PenangananRampung --> InputSelesai["Update Status 'Selesai' + Upload Bukti Selesai"]
+
+    FiturAdmin -- "Kelola Pegawai" --> MenuPegawaiAdmin["Kelola Pegawai (/admin/employees)"]
+    MenuPegawaiAdmin --> AksiPegawai["Tambah Pegawai Baru / Reset Sandi Pegawai"]
+
+    FiturAdmin -- "Kelola Kategori" --> MenuKategori["Kelola Kategori (/admin/categories)"]
+    MenuKategori --> AksiKategori["Tambah / Edit / Nonaktifkan Kategori"]
+
+    FiturAdmin -- "Rekapitulasi Laporan" --> MenuRekap["Rekapitulasi (/admin/reports)"]
+    MenuRekap --> PilihanExport{"Pilih Format Rekap"}
+    PilihanExport -- "Excel" --> GenExcel["Ekspor File Spreadsheet (.csv)"]
+    PilihanExport -- "Cetak PDF" --> CetakKopPDF["Cetak Dokumen Resmi Berkop Surat & Lembar TTD"]
+
+    FiturAdmin -- "Logout" --> LogoutAdmin["Keluar Sistem"]
+    LogoutAdmin --> SelesaiAdmin(["Selesai"])
+        </div>
+    </div>
+
+    <!-- 4. State Diagram Siklus Status Tiket -->
+    <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden p-6 sm:p-8 space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border-b border-slate-100 pb-4">
+            <div>
+                <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-arrows-spin text-emerald-600"></i>
+                    <span>4. Siklus Perubahan Status Tiket (State Diagram)</span>
+                </h2>
+                <p class="text-xs text-slate-400 mt-0.5">Transisi status pengaduan: Baru &rarr; Diverifikasi &rarr; Diproses &rarr; Selesai / Ditolak</p>
+            </div>
+            <button onclick="downloadDiagram('state-box', 'State-Status-SIPANDAI')" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-2 transition">
+                <i class="fa-solid fa-download"></i>
+                <span>Download PNG</span>
+            </button>
+        </div>
+        <div id="state-box" class="mermaid overflow-x-auto py-4 bg-white flex justify-center">
+stateDiagram-v2
+    [*] --> baru : Pegawai Mengirim Pengaduan
+    baru --> diverifikasi : Admin Memverifikasi Berkas
+    baru --> ditolak : Berkas Ditolak
+    diverifikasi --> diproses : Petugas Menangani
+    diverifikasi --> ditolak : Dibatalkan
+    diproses --> selesai : Masalah Rampung & Unggah Bukti
+    diproses --> ditolak : Terkendala
+    selesai --> [*] : Tiket Ditutup
+    ditolak --> [*] : Diarsipkan
+        </div>
+    </div>
+
+</body>
+</html>
+

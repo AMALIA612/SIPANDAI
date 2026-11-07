@@ -1,0 +1,186 @@
+<mxfile host="app.diagrams.net" modified="2026-11-04T04:30:00.000Z" agent="Antigravity" version="21.0.0" type="device">
+  <diagram id="use-case-sipandai" name="Use Case Diagram SIPANDAI">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- ===== OUTER BORDER + TITLE ===== -->
+        <mxCell id="border" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#1e3a5f;strokeWidth=3;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="1580" height="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="title_bar" value="USE CASE DIAGRAM" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1e3a5f;fontColor=#ffffff;strokeColor=#1e3a5f;fontSize=20;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="30" width="1580" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="Sistem Informasi Pengelolaan dan Monitoring Pengaduan Layanan Internal (SIPANDAI)" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2563eb;fontColor=#ffffff;strokeColor=#2563eb;fontSize=12;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="30" y="75" width="1580" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ===== SYSTEM BOUNDARY BOX ===== -->
+        <mxCell id="sys_box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#64748b;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="120" width="1180" height="880" as="geometry" />
+        </mxCell>
+        <mxCell id="sys_label" value="&lt;&lt;SISTEM SIPANDAI&gt;&gt;" style="text;html=1;align=left;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=11;fontColor=#334155;" vertex="1" parent="1">
+          <mxGeometry x="240" y="120" width="220" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ACTOR: PEGAWAI (LEFT) ===== -->
+        <mxCell id="actor_pegawai" value="PEGAWAI" style="shape=umlActor;fillColor=#1e3a5f;strokeColor=#1e3a5f;fontStyle=1;fontSize=13;fontColor=#1e3a5f;verticalLabelPosition=bottom;labelPosition=center;verticalAlign=top;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="68" y="440" width="44" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ACTOR: ADMIN (RIGHT) ===== -->
+        <mxCell id="actor_admin" value="ADMIN" style="shape=umlActor;fillColor=#7f1d1d;strokeColor=#7f1d1d;fontStyle=1;fontSize=13;fontColor=#7f1d1d;verticalLabelPosition=bottom;labelPosition=center;verticalAlign=top;align=center;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1518" y="440" width="44" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- ===================================================================== -->
+        <!--                    USE CASE PEGAWAI (LEFT SIDE)                      -->
+        <!-- ===================================================================== -->
+        <mxCell id="uc_login_peg" value="LOGIN" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="175" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_buat" value="BUAT PENGADUAN BARU" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="300" width="170" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_lacak" value="LACAK STATUS TIKET" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="435" width="170" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_riwayat" value="LIHAT RIWAYAT PENGADUAN" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="295" y="570" width="170" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_logout_peg" value="LOGOUT" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="705" width="140" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ===== INCLUDE USE CASES CENTER-LEFT ===== -->
+        <mxCell id="uc_validasi" value="VALIDASI AUTENTIKASI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="175" width="165" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_gen_tiket" value="GENERATE NOMOR TIKET OTOMATIS (SIP-XXXX-XXXXXX)" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="545" y="295" width="195" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_detail_tiket" value="TAMPILKAN DETAIL TIKET &amp; PROGRES STATUS" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="430" width="185" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_histori" value="TAMPILKAN HISTORI PENGADUAN PEGAWAI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="565" width="185" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_hapus_sesi_peg" value="HAPUS SESI &amp; REDIRECT KE LOGIN" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="555" y="700" width="175" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- ===== USE CASE ADMIN RIGHT SIDE ===== -->
+        <mxCell id="uc_login_adm" value="LOGIN" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="145" width="140" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_dashboard" value="MONITORING DASHBOARD ANALITIK" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1165" y="255" width="170" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_kelola_tiket" value="KELOLA TIKET PENGADUAN" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="375" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_kelola_kat" value="KELOLA MASTER KATEGORI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="490" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_kelola_peg" value="KELOLA DATA PEGAWAI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1175" y="610" width="150" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_cetak" value="CETAK LAPORAN PDF RESMI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="720" width="160" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_logout_adm" value="LOGOUT" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1185" y="850" width="130" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- ===== INCLUDE USE CASES CENTER-RIGHT ===== -->
+        <mxCell id="uc_kpi" value="TAMPILKAN KPI &amp; GRAFIK DONUT REAL-TIME" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="145" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_ajax" value="FILTER STATISTIK AJAX TANPA RELOAD" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="270" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_update_status" value="UPDATE STATUS &amp; INPUT CATATAN PETUGAS" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="385" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_edit_kat" value="TAMBAH / EDIT / NONAKTIFKAN KATEGORI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="500" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_reset_pass" value="TAMBAH AKUN &amp; RESET PASSWORD PEGAWAI" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="615" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_gen_pdf" value="GENERATE PDF KOP SURAT PLN &amp; EKSPOR EXCEL" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="728" width="200" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc_hapus_sesi_adm" value="HAPUS SESI ADMIN &amp; PREVENT BACK HISTORY" style="ellipse;whiteSpace=wrap;html=1;fillColor=#b91c1c;strokeColor=#7f1d1d;fontColor=#ffffff;fontSize=10;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="885" y="855" width="195" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ASSOCIATION LINES Pegawai ===== -->
+        <mxCell id="e_peg_login" style="html=1;strokeWidth=1.5;strokeColor=#1e3a5f;endArrow=none;" edge="1" parent="1" source="actor_pegawai" target="uc_login_peg"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_peg_buat" style="html=1;strokeWidth=1.5;strokeColor=#1e3a5f;endArrow=none;" edge="1" parent="1" source="actor_pegawai" target="uc_buat"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_peg_lacak" style="html=1;strokeWidth=1.5;strokeColor=#1e3a5f;endArrow=none;" edge="1" parent="1" source="actor_pegawai" target="uc_lacak"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_peg_riwayat" style="html=1;strokeWidth=1.5;strokeColor=#1e3a5f;endArrow=none;" edge="1" parent="1" source="actor_pegawai" target="uc_riwayat"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_peg_logout" style="html=1;strokeWidth=1.5;strokeColor=#1e3a5f;endArrow=none;" edge="1" parent="1" source="actor_pegawai" target="uc_logout_peg"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- ===== INCLUDE ARROWS Pegawai Side ===== -->
+        <mxCell id="inc_peg_login_val" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_login_peg" target="uc_validasi"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_buat_gen" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_buat" target="uc_gen_tiket"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_lacak_detail" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_lacak" target="uc_detail_tiket"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_riwayat_hist" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_riwayat" target="uc_histori"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_peg_logout_hapus" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_logout_peg" target="uc_hapus_sesi_peg"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- ===== ASSOCIATION LINES Admin ===== -->
+        <mxCell id="e_adm_login" style="html=1;strokeWidth=1.5;strokeColor=#7f1d1d;endArrow=none;" edge="1" parent="1" source="actor_admin" target="uc_login_adm"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_adm_dash" style="html=1;strokeWidth=1.5;strokeColor=#7f1d1d;endArrow=none;" edge="1" parent="1" source="actor_admin" target="uc_dashboard"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_adm_tiket" style="html=1;strokeWidth=1.5;strokeColor=#7f1d1d;endArrow=none;" edge="1" parent="1" source="actor_admin" target="uc_kelola_tiket"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_adm_kat" style="html=1;strokeWidth=1.5;strokeColor=#7f1d1d;endArrow=none;" edge="1" parent="1" source="actor_admin" target="uc_kelola_kat"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_adm_peg" style="html=1;strokeWidth=1.5;strokeColor=#7f1d1d;endArrow=none;" edge="1" parent="1" source="actor_admin" target="uc_kelola_peg"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_adm_cetak" style="html=1;strokeWidth=1.5;strokeColor=#7f1d1d;endArrow=none;" edge="1" parent="1" source="actor_admin" target="uc_cetak"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e_adm_logout" style="html=1;strokeWidth=1.5;strokeColor=#7f1d1d;endArrow=none;" edge="1" parent="1" source="actor_admin" target="uc_logout_adm"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- ===== INCLUDE ARROWS Admin Side ===== -->
+        <mxCell id="inc_adm_login_kpi" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_login_adm" target="uc_kpi"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_dash_ajax" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_dashboard" target="uc_ajax"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_tiket_update" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_kelola_tiket" target="uc_update_status"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_kat_edit" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_kelola_kat" target="uc_edit_kat"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_peg_reset" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_kelola_peg" target="uc_reset_pass"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_cetak_gen" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_cetak" target="uc_gen_pdf"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="inc_adm_logout_hapus" value="&lt;&lt;include&gt;&gt;" style="html=1;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;strokeColor=#374151;fontSize=10;fontStyle=2;labelBackgroundColor=#ffffff;" edge="1" parent="1" source="uc_logout_adm" target="uc_hapus_sesi_adm"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- ===== LEGEND ===== -->
+        <mxCell id="legend_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#94a3b8;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="895" width="340" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_title" value="KETERANGAN DIAGRAM" style="text;html=1;align=left;fontStyle=1;fontSize=11;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="65" y="903" width="200" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_uc" value="" style="ellipse;fillColor=#b91c1c;strokeColor=#7f1d1d;" vertex="1" parent="1">
+          <mxGeometry x="68" y="930" width="60" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_uc_txt" value=": Use Case (Fungsionalitas Sistem)" style="text;html=1;fontSize=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="138" y="928" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_inc_line" value="" style="edgeStyle=none;dashed=1;endArrow=open;endFill=0;strokeWidth=1.2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="68" y="968" as="sourcePoint" />
+            <mxPoint x="128" y="968" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_inc_txt" value=": Relasi &lt;&lt;include&gt;&gt; (Wajib Dieksekusi)" style="text;html=1;fontSize=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="138" y="956" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="legend_assoc_line" value="" style="edgeStyle=none;endArrow=none;strokeWidth=1.5;strokeColor=#1e3a5f;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="68" y="998" as="sourcePoint" />
+            <mxPoint x="128" y="998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_assoc_txt" value=": Relasi Asosiasi (Aktor ke Use Case)" style="text;html=1;fontSize=10;fillColor=none;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="138" y="986" width="240" height="26" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
